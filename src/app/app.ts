@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { form, FormField } from '@angular/forms/signals';
+import { email, form, FormField, maxLength, minLength, pattern, required } from '@angular/forms/signals';
 
 interface LoginData {
   userName: string;
@@ -26,7 +26,25 @@ export class App {
     adminSecret: ''
   });
 
-  protected readonly loginForm = form(this.loginData);
+  protected readonly loginForm = form(this.loginData,(path) => {
+    required(path.userName);
+    minLength(path.userName, 3);
+    maxLength(path.userName, 20);
+
+    required(path.email);
+    email(path.email);
+
+    required(path.password);
+    minLength(path.password, 6);
+    maxLength(path.password, 20);
+    pattern(path.password,   
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,{
+      // message: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.'
+    }
+     
+    )
+  });
+
 
   saveLoginForm(){
 
