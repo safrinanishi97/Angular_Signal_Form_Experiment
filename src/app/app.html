@@ -38,6 +38,7 @@
             {{ error.message }}
           </div>
         }
+        <!-- <p>Password length: {{ loginForm.password().value().length }}</p> -->
       </div>
 
       <div class="form-check mb-3">
@@ -49,7 +50,7 @@
 
       @if(loginData().loginAsAdmin){
         <div class="mb-3">
-          <label for="adminSecret" class="form-label">Admin Secret</label>
+          <label for="adminSecret" class="form-label">Admin Secret Code</label>
           <input type="password" id="adminSecret" class="form-control" [formField]="loginForm.adminSecret" placeholder="Enter Admin Secret">
 
           @for(error of loginForm.adminSecret().errors(); track error){

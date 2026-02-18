@@ -56,6 +56,20 @@ It focuses on:
 
 ---
 
+## 🖼 Preview
+
+![Login UI](./screen_shot/ss_01.png)
+
+![Login UI](./screen_shot/ss_02.png)
+
+![Login UI](./screen_shot/ss_03.png)
+
+![Login UI](./screen_shot/ss_04.png)
+
+![Login UI](./screen_shot/ss_05.png)
+
+---
+
 ## 📦 Installation
 
 ```bash
@@ -63,3 +77,4 @@ git clone https://github.com/your-username/angular-signal-form-experiment.git
 cd angular-signal-form-experiment
 npm install
 ng serve
+
