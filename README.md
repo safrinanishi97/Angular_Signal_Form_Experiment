@@ -1,59 +1,65 @@
-# SignalFormsDemo
+# Angular Signal Form Login
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.2.
+A login authentication UI built using Angular Signals and a signal-driven form architecture without Reactive Forms.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Tech Stack
+
+- Angular (Latest Version)
+- Standalone Components
+- Angular Signals
+- Signal-based Form API
+- TypeScript
+
+---
+
+## 🎯 Objective
+
+This project explores how Angular Signals can be used to manage form state and validation without relying on Reactive Forms or RxJS-heavy patterns.
+
+---
+
+## 🎯 Project Goal
+
+The purpose of this project is to explore and implement authentication UI 
+using Angular Signals instead of traditional Reactive Forms.
+
+It focuses on:
+
+- Signal-driven form state
+- Declarative validation logic
+- Minimal RxJS usage
+- Clean component architecture
+- Modern Angular patterns
+
+---
+
+## ✨ Features
+
+- Signal-based login form
+- Real-time validation
+<!-- - Derived state using computed() -->
+- Clean separation of UI and logic
+- Standalone component architecture
+- No Reactive Forms dependency
+
+---
+
+## 🏗 Architecture Highlights
+
+- `signal()` for input state
+<!-- - Computed signals for derived validation state -->
+- Standalone component design
+- Scalable folder structure
+- Stateless UI binding
+
+---
+
+## 📦 Installation
 
 ```bash
+git clone https://github.com/your-username/angular-signal-form-experiment.git
+cd angular-signal-form-experiment
+npm install
 ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
