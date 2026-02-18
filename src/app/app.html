@@ -4,28 +4,17 @@
         <input type="text" [formField]="loginForm.userName" placeholder="Enter Username">
 
         @for(error of loginForm.userName().errors(); track error){
-           @if(error.kind === 'required'){
-                <div class="text-danger">*Username is required.</div>
-           }@else if(error.kind === 'minlength'){
-                <div class="text-danger">*Username must be at least 3 characters long.</div>
-           }@else if(error.kind === 'maxlength'){
-                <div class="text-danger">*Username cannot be more than 20 characters long.</div>
-           }    
+           <div class="text-danger">{{ error.message }}</div>
         }
 
-
         <!-- <p>Username: {{ loginForm.userName().value() }}</p> -->
-        <!-- Value diye sorasori value change hole ui update hobe. FormField diye form control er value change hole ui update hobe. -->
+        <!-- Value()- sorasori value change hole ui update hobe. FormField diye form control er value change hole ui update hobe. -->
     </label><br><br>
     
     <label for="email">Email: 
       <input type="email" [formField]="loginForm.email" placeholder="Enter Email">
         @for(error of loginForm.email().errors(); track error){
-           @if(error.kind === 'required'){
-                <div class="text-danger">*Email is required.</div>
-           }@else if(error.kind === 'email'){
-                <div class="text-danger">*Email is not valid.</div>
-           }    
+           <div class="text-danger">{{ error.message }}</div>
         }
                
     </label><br><br>
@@ -33,15 +22,7 @@
     <label for="password">Password: 
          <input type="password" id="password" [formField]="loginForm.password" placeholder="Enter Password">
         @for(error of loginForm.password().errors(); track error){
-           @if(error.kind === 'required'){
-                <div class="text-danger">*Password is required.</div>
-           }@else if(error.kind === 'minlength'){
-                <div class="text-danger">*Password must be at least 6 characters long.</div>
-           }@else if(error.kind === 'maxlength'){
-                <div class="text-danger">*Password cannot be more than 20 characters long.</div>
-           }@else if(error.kind === 'pattern'){
-                <div class="text-danger">*Password must contain at least one uppercase letter, one lowercase letter, and one number.</div>
-           }
+           <div class="text-danger">{{ error.message }}</div>
         }
     </label> <br><br>
 

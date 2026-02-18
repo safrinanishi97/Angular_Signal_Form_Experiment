@@ -27,21 +27,18 @@ export class App {
   });
 
   protected readonly loginForm = form(this.loginData,(path) => {
-    required(path.userName);
-    minLength(path.userName, 3);
-    maxLength(path.userName, 20);
+    required(path.userName, {message: 'Username is required.'});
+    minLength(path.userName, 3, {message: 'Username must be at least 3 characters long.'});
+    maxLength(path.userName, 20, {message: 'Username cannot be more than 20 characters long.'});
 
-    required(path.email);
-    email(path.email);
+    required(path.email, {message: 'Email is required.'});
+    email(path.email, {message: 'Please enter a valid email address.'});
 
-    required(path.password);
-    minLength(path.password, 6);
-    maxLength(path.password, 20);
-    pattern(path.password,   
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,{
-      // message: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.'
-    }
-     
+    required(path.password, {message: 'Password is required.'});
+    minLength(path.password, 6, {message: 'Password must be at least 6 characters long.'});
+    maxLength(path.password, 20, {message: 'Password cannot be more than 20 characters long.'});
+    pattern(path.password,  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
+      {message: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.'}     
     )
   });
 
