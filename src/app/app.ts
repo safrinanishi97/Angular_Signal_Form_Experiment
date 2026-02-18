@@ -68,6 +68,9 @@ export class App {
   });
 
   saveLoginForm(){
+    event?.preventDefault();
+   const formValue = this.loginForm().value(); 
+   console.log('Form Value:', formValue);
 
   }
 }
