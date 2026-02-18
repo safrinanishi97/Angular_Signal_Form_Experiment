@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { apply, email, form, FormField, maxLength, minLength, pattern, required, schema, Schema } from '@angular/forms/signals';
 
 interface LoginData {
@@ -15,13 +15,30 @@ const validators: Schema<string> = schema((fieldPath) => {
   maxLength(fieldPath, 20, {message: 'Cannot be more than 20 characters long.'});
 })
 
+const fetchedUser = {
+  userName: 'Alice',
+  email: 'alice@example.com',
+  password: ''
+};
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
   imports: [FormField]
 })
-export class App {
+export class App implements OnInit {
+  ngOnInit(): void {
+    const fetchedUser = {
+      userName: 'Alice Alice',
+      email: 'alice@example.com',
+      password: '@Lice12345'
+    };
+
+     this.loginForm.userName().value.set(fetchedUser.userName);
+     this.loginForm.email().value.set(fetchedUser.email);
+    this.loginForm.password().value.set(fetchedUser.password);
+  }
   protected readonly title = signal('signal-forms-demo');
 
   protected readonly loginData = signal<LoginData>({
