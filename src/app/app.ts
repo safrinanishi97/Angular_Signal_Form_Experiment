@@ -5,6 +5,8 @@ interface LoginData {
   userName: string;
   email: string;
   password: string;
+  loginAsAdmin: boolean;
+  adminSecret: string;
 }
 
 @Component({
@@ -19,12 +21,14 @@ export class App {
   protected readonly loginData = signal<LoginData>({
     userName: '',
     email: '',
-    password: ''
+    password: '',
+    loginAsAdmin: false,
+    adminSecret: ''
   });
 
   protected readonly loginForm = form(this.loginData);
 
   saveLoginForm(){
-    
+
   }
 }

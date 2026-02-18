@@ -1,12 +1,27 @@
 <h2>Login Form</h2>
 <form (submit)="saveLoginForm()" $event.preventDefault()>   
-    <label for="userName">Username: </label>
-    <input type="text" [formField]="loginForm.userName" placeholder="Enter Username"><br><br>
-    <!-- <p>Username: {{ loginForm.userName().value() }}</p> -->
-     <!-- Value diye sorasori value change hole ui update hobe. FormField diye form control er value change hole ui update hobe. -->
-    <label for="email">Email: </label>
-    <input type="email" [formField]="loginForm.email" placeholder="Enter Email"><br><br>
-    <label for="password">Password: </label>
-    <input type="password" [formField]="loginForm.password" placeholder="Enter Password">
+    <label for="userName">Username: 
+        <input type="text" [formField]="loginForm.userName" placeholder="Enter Username">
+        <!-- <p>Username: {{ loginForm.userName().value() }}</p> -->
+        <!-- Value diye sorasori value change hole ui update hobe. FormField diye form control er value change hole ui update hobe. -->
+    </label><br><br>
+    
+    <label for="email">Email: 
+        <input type="email" [formField]="loginForm.email" placeholder="Enter Email">
+    </label><br><br>
+
+    <label for="password">Password: 
+         <input type="password" id="password" [formField]="loginForm.password" placeholder="Enter Password">
+    </label> <br><br>
+
+    <label for="loginAsAdmin">
+        <input type="checkbox" [formField]="loginForm.loginAsAdmin"> Login as Admin
+    </label><br><br>
+
+    @if(loginData().loginAsAdmin){
+        <label for="adminSecret">Admin Secret:
+             <input type="password" [formField]="loginForm.adminSecret" placeholder="Enter Admin Secret">
+        </label>
+    }
 </form><br>
-<button class="btn btn-primary" (click)="saveLoginForm()">Save</button>
+<button class="btn btn-primary" (click)="saveLoginForm()">Login</button>
