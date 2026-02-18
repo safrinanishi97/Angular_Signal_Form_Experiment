@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { email, form, FormField, maxLength, minLength, pattern, required } from '@angular/forms/signals';
+import { apply, email, form, FormField, maxLength, minLength, pattern, required, schema, Schema } from '@angular/forms/signals';
 
 interface LoginData {
   userName: string;
@@ -8,6 +8,12 @@ interface LoginData {
   loginAsAdmin: boolean;
   adminSecret: string;
 }
+
+const validators: Schema<string> = schema((fieldPath) => {
+  required(fieldPath, {message: 'This field is required.'});
+  minLength(fieldPath, 6, {message: 'Must be at least 6 characters long.'});
+  maxLength(fieldPath, 20, {message: 'Cannot be more than 20 characters long.'});
+})
 
 @Component({
   selector: 'app-root',
@@ -26,22 +32,35 @@ export class App {
     adminSecret: ''
   });
 
-  protected readonly loginForm = form(this.loginData,(path) => {
-    required(path.userName, {message: 'Username is required.'});
-    minLength(path.userName, 3, {message: 'Username must be at least 3 characters long.'});
-    maxLength(path.userName, 20, {message: 'Username cannot be more than 20 characters long.'});
+  // protected readonly loginForm = form(this.loginData,(path) => {
+  //   required(path.userName, {message: 'Username is required.'});
+  //   minLength(path.userName, 3, {message: 'Username must be at least 3 characters long.'});
+  //   maxLength(path.userName, 20, {message: 'Username cannot be more than 20 characters long.'});
 
-    required(path.email, {message: 'Email is required.'});
-    email(path.email, {message: 'Please enter a valid email address.'});
+  //   required(path.email, {message: 'Email is required.'});
+  //   email(path.email, {message: 'Please enter a valid email address.'});
 
-    required(path.password, {message: 'Password is required.'});
-    minLength(path.password, 6, {message: 'Password must be at least 6 characters long.'});
-    maxLength(path.password, 20, {message: 'Password cannot be more than 20 characters long.'});
-    pattern(path.password,  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
-      {message: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.'}     
-    )
+  //   required(path.password, {message: 'Password is required.'});
+  //   minLength(path.password, 6, {message: 'Password must be at least 6 characters long.'});
+  //   maxLength(path.password, 20, {message: 'Password cannot be more than 20 characters long.'});
+  //   pattern(path.password,  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
+  //     {message: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.'}     
+  //   )
+  // });
+
+
+    protected readonly loginForm = form(this.loginData,(path) => {
+      apply(path.userName,validators)
+
+      required(path.email, {message: 'Email is required.'});
+      email(path.email, {message: 'Please enter a valid email address.'});
+
+      apply(path.password,validators);
+      pattern(path.password,   /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/,
+        {message: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.'}     
+      )
+      
   });
-
 
   saveLoginForm(){
 
