@@ -1,39 +1,69 @@
-<h2>Login Form</h2>
-<form (submit)="saveLoginForm()" $event.preventDefault()>   
-    <label for="userName">Username: 
-        <input type="text" [formField]="loginForm.userName" placeholder="Enter Username">
+<div class="container vh-100 d-flex justify-content-center align-items-center ">
+  <div class="card p-4 rounded-4 text-white" style="background: linear-gradient(145deg,#03294eaf,#041430); box-shadow: 0 15px 40px rgba(0,0,0,0.7);">
+    <!-- (145deg,#0b3f77,#2b364b); -->
+    <h3 class="text-center mb-4 fw-bold">Login Form</h3>
+
+    <form (submit)="saveLoginForm(); $event.preventDefault()">
+
+      <div class="mb-3">
+        <label for="userName" class="form-label">Username</label>
+        <input type="text" id="userName" class="form-control" [formField]="loginForm.userName" placeholder="Enter Username">
 
         @for(error of loginForm.userName().errors(); track error){
-           <div class="text-danger">{{ error.message }}</div>
+        <div class="text-warning small mt-1">
+            {{ error.message }}
+        </div>
         }
+      </div>
 
-        <!-- <p>Username: {{ loginForm.userName().value() }}</p> -->
-        <!-- Value()- sorasori value change hole ui update hobe. FormField diye form control er value change hole ui update hobe. -->
-    </label><br><br>
-    
-    <label for="email">Email: 
-      <input type="email" [formField]="loginForm.email" placeholder="Enter Email">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" [formField]="loginForm.email" placeholder="Enter Email">
+
         @for(error of loginForm.email().errors(); track error){
-           <div class="text-danger">{{ error.message }}</div>
+          <div class="text-warning small mt-1">
+            {{ error.message }}
+          </div>
         }
-               
-    </label><br><br>
+      </div>
 
-    <label for="password">Password: 
-         <input type="password" id="password" [formField]="loginForm.password" placeholder="Enter Password">
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input  type="password" id="password" class="form-control" [formField]="loginForm.password" placeholder="Enter Password">
+
         @for(error of loginForm.password().errors(); track error){
-           <div class="text-danger">{{ error.message }}</div>
+          <div class="text-warning small mt-1">
+            {{ error.message }}
+          </div>
         }
-    </label> <br><br>
+      </div>
 
-    <label for="loginAsAdmin">
-        <input type="checkbox" [formField]="loginForm.loginAsAdmin"> Login as Admin
-    </label><br><br>
-
-    @if(loginData().loginAsAdmin){
-        <label for="adminSecret">Admin Secret:
-             <input type="password" [formField]="loginForm.adminSecret" placeholder="Enter Admin Secret">
+      <div class="form-check mb-3">
+        <input type="checkbox" id="loginAsAdmin" class="form-check-input" [formField]="loginForm.loginAsAdmin">
+        <label class="form-check-label" for="loginAsAdmin">
+          Login as Admin
         </label>
-    }
-</form><br>
-<button class="btn btn-primary" (click)="saveLoginForm()">Login</button>
+      </div>
+
+      @if(loginData().loginAsAdmin){
+        <div class="mb-3">
+          <label for="adminSecret" class="form-label">Admin Secret</label>
+          <input type="password" id="adminSecret" class="form-control" [formField]="loginForm.adminSecret" placeholder="Enter Admin Secret">
+
+          @for(error of loginForm.adminSecret().errors(); track error){
+            <div class="text-warning small mt-1">
+              {{ error.message }}
+            </div>
+          }
+        </div>
+      }
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">
+          Login
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

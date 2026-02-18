@@ -59,6 +59,11 @@ export class App {
       pattern(path.password,   /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/,
         {message: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.'}     
       )
+
+      required(path.adminSecret, {
+        when: ({valueOf}) => valueOf(path.loginAsAdmin) === true,
+        message: 'Admin secret is required when logging in as admin.'
+      })
       
   });
 
